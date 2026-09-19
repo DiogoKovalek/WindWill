@@ -4,15 +4,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class WindTurbine : MonoBehaviour {
+    // Ver outra forma de declarar elas
+    [SerializeField] private int indexTurbine;
     [SerializeField] private GameObject Paletas;
-    private const float speedMultiplier = 1.5f;
+    private const float speedMultiplier = 2.5f;
     private bool isStop = false;
 
     [Header("Energy")]
-    private float energyMultiplier = 0.005f;
+    private float energyPercentProduce = 0.05f;
 
     #region EVENTS
-    public event Action<float> energyGenerated;
+    public event Action<float, int> energyGenerated = delegate {};
     #endregion
 
     void Start() {
@@ -23,7 +25,7 @@ public class WindTurbine : MonoBehaviour {
 
     void Update() {
         if (WindControler.windControler != null) {
-            if (WindControler.windControler.windSpeed >= WindControler.windControler.windProduce[4] ||
+            if (WindControler.windControler.windSpeed >= WindControler.windControler.windProduce[5] ||
                 WindControler.windControler.windSpeed < WindControler.windControler.windProduce[1]) isStop = true;
             else {
                 isStop = false;
@@ -37,31 +39,27 @@ public class WindTurbine : MonoBehaviour {
             yield return new WaitForSeconds(1f);
             if (isStop) continue;
             float energy = calculateEnergyBySpeedWind(WindControler.windControler.windSpeed);
-            energyGenerated?.Invoke(energy);
+            energyGenerated?.Invoke(energy, indexTurbine);
         }
     }
 
     private float calculateEnergyBySpeedWind(float windSpeed) {
-        // 0 -> 1 Nao produz
-        // 1 -> 2 Produz com uma porcentagem abaixo de 100%
-        // 2 -> 4 Produz com 100%
-        // 4 -> Infinity Não produz cut-out
         float[] p = WindControler.windControler.windProduce;
         float percent = 0;
 
         // Abaixo da velocidade minima e acima da maxima
-        if (windSpeed < p[1] || windSpeed >= p[4]) {
+        if (windSpeed < p[2] || windSpeed >= p[5]) {
             return 0;
         }
         // Primeiro intervalo de producao -> abaixo de 100%
-        if (windSpeed < p[2]) {
-            percent = Mathf.InverseLerp(p[1], p[2], windSpeed) * 100;
+        if (windSpeed < p[3]) {
+            percent = Mathf.InverseLerp(p[2], p[3], windSpeed) * 100;
         }
         // Segundo intervalo de producao -> exatamente 100%
-        else if (windSpeed < p[4]) {
+        else if (windSpeed < p[5]) {
             percent = 100;
         }
-        return percent * energyMultiplier;
+        return percent * energyPercentProduce;
 
     }
 }

@@ -5,6 +5,7 @@ using UnityEngine;
 public class EventManager : MonoBehaviour {
     [SerializeField] private CameraControler cameraControler;
     [SerializeField] private UIControler uiControler;
+    [SerializeField] private WindControler windControler;
     [SerializeField] private GameControler gameControler;
     [SerializeField] private EnergyExpenditureControler energyExpenditureControler;
     [SerializeField] private PlayerControler playerControler;
@@ -31,6 +32,7 @@ public class EventManager : MonoBehaviour {
 
         //Batery
         batery.GameOvered += gameControler.OnGameOver;
+        batery.UpdatedTextPercentGerador += uiControler.OnUpdatedTextPercentGerador;
 
         //WindTurbine
         foreach (var windTurbine in listWindTurbine) {
@@ -39,5 +41,9 @@ public class EventManager : MonoBehaviour {
 
         //EnergyExpenditureControler
         energyExpenditureControler.ExpecturedEnergy += batery.OnExpecturedEnergy;
+        energyExpenditureControler.UpdatedTextSpendHouses += uiControler.OnUpdatedTextSpendHouses;
+
+        //WindControler
+        windControler.UpdatedTextSpeedWind += uiControler.OnUpdatedTextSpeedWind;
     }
 }

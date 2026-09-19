@@ -1,25 +1,31 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class WindControler : MonoBehaviour {
-    //0 a 11 km/h não produz energia
-    //11 a 90 km/h é a faixa que produz
-    //43 a 54 km/h produz com 100% de eficacia
-    //acima de 90 km/h é cut-out
+    //0 a 7 m/a não produz energia
+    //4 a 7 m/a apenas gira
+    //7 a 10 m/a é a faixa que produz
+    //10 a 14 m/a produz com 100% de eficacia
+    //acima de 25 m/a é cut-out
     public static WindControler windControler;
-    public float windSpeed = 47;
+    public float windSpeed = 7;
+
+    #region EVENTS
+    public event Action<float> UpdatedTextSpeedWind = delegate {};
+    #endregion
 
     // Wind Varibles ===============================================
-    public readonly float[] windProduce = { 0f, 11f, 43f, 54f, 90f };
-    // 0 -> 1 Nao produz
-    // 1 -> 2 Produz com uma porcentagem abaixo de 100%
-    // 2 -> 3 Produz com 100%
-    // 3 -> 4 Produz com uma porcentagem abaixo de 100% -> REMOVIDO
-    // 4 -> Infinity Não produz cut-out
+    public readonly float[] windProduce = { 0f, 4f, 7f, 10, 14, 25};
     //==============================================================
     void Awake() {
         if (windControler == null) windControler = this;
         else Destroy(this);
+    }
+
+    //Temporario até mecher no sistema de vento
+    void FixedUpdate() {
+        UpdatedTextSpeedWind?.Invoke(windSpeed);
     }
 }
