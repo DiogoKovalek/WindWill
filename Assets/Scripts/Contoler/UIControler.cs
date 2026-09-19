@@ -3,8 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UIControler : MonoBehaviour
-{
+public class UIControler : MonoBehaviour {
     //Arrows ===========================================
     [Header("Buttons Arrows")]
     [SerializeField] private GameObject btArrowLeft;
@@ -12,8 +11,8 @@ public class UIControler : MonoBehaviour
     //==================================================
 
     #region EVENTS
-    public event Action ClickedArrowLeft = delegate {};
-    public event Action ClickedArroRight = delegate {};
+    public event Action ClickedArrowLeft = delegate { };
+    public event Action ClickedArroRight = delegate { };
     #endregion
 
     #region Arrows

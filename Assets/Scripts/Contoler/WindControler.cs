@@ -11,7 +11,7 @@ public class WindControler : MonoBehaviour {
     public float windSpeed = 47;
 
     // Wind Varibles ===============================================
-    public readonly float[] windProduce = {0f, 11f, 43f, 54f, 90f};
+    public readonly float[] windProduce = { 0f, 11f, 43f, 54f, 90f };
     // 0 -> 1 Nao produz
     // 1 -> 2 Produz com uma porcentagem abaixo de 100%
     // 2 -> 3 Produz com 100%

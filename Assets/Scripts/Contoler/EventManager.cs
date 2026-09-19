@@ -2,21 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EventManager : MonoBehaviour
-{
+public class EventManager : MonoBehaviour {
     [SerializeField] private CameraControler cameraControler;
     [SerializeField] private UIControler uiControler;
     [SerializeField] private GameControler gameControler;
+    [SerializeField] private EnergyExpenditureControler energyExpenditureControler;
     [SerializeField] private PlayerControler playerControler;
     [SerializeField] private Batery batery;
     [SerializeField] private GameObject objWindTurbine;
     private WindTurbine[] listWindTurbine;
-    void Awake()
-    {
+    void Awake() {
         getLists();
         startEvents();
     }
-    private void getLists(){
+    private void getLists() {
         listWindTurbine = objWindTurbine?.GetComponentsInChildren<WindTurbine>();
     }
 
@@ -34,9 +33,11 @@ public class EventManager : MonoBehaviour
         batery.GameOvered += gameControler.OnGameOver;
 
         //WindTurbine
-        foreach(var windTurbine in listWindTurbine) {
+        foreach (var windTurbine in listWindTurbine) {
             windTurbine.energyGenerated += batery.OnReciveEnergy;
         }
 
+        //EnergyExpenditureControler
+        energyExpenditureControler.ExpecturedEnergy += batery.OnExpecturedEnergy;
     }
 }

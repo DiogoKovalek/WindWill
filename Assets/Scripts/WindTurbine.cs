@@ -23,7 +23,7 @@ public class WindTurbine : MonoBehaviour {
 
     void Update() {
         if (WindControler.windControler != null) {
-            if (WindControler.windControler.windSpeed >= WindControler.windControler.windProduce[4] || 
+            if (WindControler.windControler.windSpeed >= WindControler.windControler.windProduce[4] ||
                 WindControler.windControler.windSpeed < WindControler.windControler.windProduce[1]) isStop = true;
             else {
                 isStop = false;
@@ -56,7 +56,7 @@ public class WindTurbine : MonoBehaviour {
         // Primeiro intervalo de producao -> abaixo de 100%
         if (windSpeed < p[2]) {
             percent = Mathf.InverseLerp(p[1], p[2], windSpeed) * 100;
-        } 
+        }
         // Segundo intervalo de producao -> exatamente 100%
         else if (windSpeed < p[4]) {
             percent = 100;
