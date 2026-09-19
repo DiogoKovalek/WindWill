@@ -14,13 +14,17 @@ public class WindTurbine : MonoBehaviour {
     private float energyPercentProduce = 0.05f;
 
     #region EVENTS
-    public event Action<float, int> energyGenerated = delegate {};
+    public event Action<float> energyGenerated = delegate {};
+    public event Action<float, int> UpdatedTextPercentGerador = delegate {};
+    public event Action<COLOR_ICON, int> UpdatedImageColorTurbine = delegate {};
     #endregion
 
     void Start() {
         if (WindControler.windControler != null) {
             StartCoroutine(timerProduceEnergy());
         }
+        //Temporario
+        UpdatedImageColorTurbine?.Invoke(COLOR_ICON.GREN, indexTurbine);
     }
 
     void Update() {
@@ -39,7 +43,8 @@ public class WindTurbine : MonoBehaviour {
             yield return new WaitForSeconds(1f);
             if (isStop) continue;
             float energy = calculateEnergyBySpeedWind(WindControler.windControler.windSpeed);
-            energyGenerated?.Invoke(energy, indexTurbine);
+            energyGenerated?.Invoke(energy);
+            UpdatedTextPercentGerador?.Invoke(energy, indexTurbine);
         }
     }
 

@@ -14,6 +14,7 @@ public class WindControler : MonoBehaviour {
 
     #region EVENTS
     public event Action<float> UpdatedTextSpeedWind = delegate {};
+    public event Action<COLOR_ICON> UpdatedImageColorWind = delegate {};
     #endregion
 
     // Wind Varibles ===============================================
@@ -27,5 +28,12 @@ public class WindControler : MonoBehaviour {
     //Temporario até mecher no sistema de vento
     void FixedUpdate() {
         UpdatedTextSpeedWind?.Invoke(windSpeed);
+        if(windSpeed <= 7 || windSpeed >= 25) {
+            UpdatedImageColorWind?.Invoke(COLOR_ICON.RED);
+        }else if(windSpeed < 10) {
+            UpdatedImageColorWind?.Invoke(COLOR_ICON.YELLOW);
+        }else if (windSpeed < 25) {
+            UpdatedImageColorWind?.Invoke(COLOR_ICON.GREN);
+        }
     }
 }

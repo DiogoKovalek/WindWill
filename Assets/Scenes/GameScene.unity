@@ -3763,6 +3763,19 @@ MonoBehaviour:
   textSpeedWind: {fileID: 1172539811}
   textSpendHouses: {fileID: 1816050112}
   textPercentGerador: {fileID: 468691068}
+  colorsIcons:
+  - serializedVersion: 2
+    rgba: 4283144243
+  - serializedVersion: 2
+    rgba: 4279542527
+  - serializedVersion: 2
+    rgba: 4281015945
+  imagesIconsTurbine:
+  - {fileID: 852850927}
+  - {fileID: 265503840}
+  - {fileID: 726055841}
+  - {fileID: 1924242155}
+  imageIconWind: {fileID: 1450073060}
 --- !u!1 &1388907225
 GameObject:
   m_ObjectHideFlags: 0

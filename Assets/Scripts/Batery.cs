@@ -16,12 +16,9 @@ public class Batery : MonoBehaviour {
     private const float maxFullHight = 5;
     private const float minFullHight = 0.5f;
 
-    // Soma das turbinas
-    private float[] turbinesProduces = new float[4];
 
     #region EVENTS
     public event Action GameOvered = delegate { };
-    public event Action<float> UpdatedTextPercentGerador = delegate {};
     #endregion
 
     void Start() {
@@ -55,10 +52,8 @@ public class Batery : MonoBehaviour {
         }
     }
 
-    public void OnReciveEnergy(float energy, int indexWindTurbine) {
+    public void OnReciveEnergy(float energy) {
         numFull = numFull + energy > 100 ? 100 : numFull + energy;
-        turbinesProduces[indexWindTurbine] = energy;
-        UpdatedTextPercentGerador?.Invoke(turbinesProduces.Sum());
     }
     public void OnExpecturedEnergy(float energy) {
         numFull = numFull - energy < 0 ? 0 : numFull - energy;

@@ -32,11 +32,12 @@ public class EventManager : MonoBehaviour {
 
         //Batery
         batery.GameOvered += gameControler.OnGameOver;
-        batery.UpdatedTextPercentGerador += uiControler.OnUpdatedTextPercentGerador;
 
         //WindTurbine
         foreach (var windTurbine in listWindTurbine) {
             windTurbine.energyGenerated += batery.OnReciveEnergy;
+            windTurbine.UpdatedTextPercentGerador += uiControler.OnUpdatedTextPercentGerador;
+            windTurbine.UpdatedImageColorTurbine += uiControler.OnUpdatedColorImageTurbine;
         }
 
         //EnergyExpenditureControler
@@ -45,5 +46,6 @@ public class EventManager : MonoBehaviour {
 
         //WindControler
         windControler.UpdatedTextSpeedWind += uiControler.OnUpdatedTextSpeedWind;
+        windControler.UpdatedImageColorWind += uiControler.OnUpdatedColorImageWind;
     }
 }
