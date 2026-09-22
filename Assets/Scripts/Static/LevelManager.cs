@@ -28,6 +28,10 @@ public static class LevelManager
     public static void MinigameLevel() {
         SceneManager.LoadScene(miniGameScene);
     }
+    public static void ToGoHomeScreen() {
+        level = 0;
+        SceneManager.LoadScene(menuScene);
+    }
 }
 
 public struct LevelAtributes {

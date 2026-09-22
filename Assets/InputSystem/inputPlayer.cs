@@ -132,9 +132,27 @@ public partial class @InputPlayer: IInputActionCollection2, IDisposable
             ""id"": ""c5a9469d-f8e2-4eb7-ba27-58f593af1783"",
             ""actions"": [
                 {
-                    ""name"": ""New action"",
+                    ""name"": ""Click"",
                     ""type"": ""Button"",
                     ""id"": ""8ea5983d-ecda-43ff-8950-fd6fc5995d08"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MousePosition"",
+                    ""type"": ""Value"",
+                    ""id"": ""28497440-abea-4992-9d38-b1d182c724dc"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""ExitGame"",
+                    ""type"": ""Button"",
+                    ""id"": ""738459bc-8cea-4a9e-bf6b-abadf5e3728f"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -145,11 +163,33 @@ public partial class @InputPlayer: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""486992ef-2256-4459-a8c9-13b5acf6489e"",
-                    ""path"": """",
+                    ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""New action"",
+                    ""action"": ""Click"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""507708c8-239e-4440-b29f-a955f6878b4b"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MousePosition"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f229509d-bab6-4e87-b945-dea9c545735d"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ExitGame"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -160,9 +200,18 @@ public partial class @InputPlayer: IInputActionCollection2, IDisposable
             ""id"": ""f1ba1437-38b1-477f-883e-f54c79127ade"",
             ""actions"": [
                 {
-                    ""name"": ""New action"",
-                    ""type"": ""Button"",
+                    ""name"": ""Navigation"",
+                    ""type"": ""Value"",
                     ""id"": ""97ae40fd-e40c-430b-b339-62d74eefee4c"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""SelectAnswer"",
+                    ""type"": ""Button"",
+                    ""id"": ""ce351ac9-8238-4db4-803c-498ceeb2798d"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -172,35 +221,153 @@ public partial class @InputPlayer: IInputActionCollection2, IDisposable
             ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""d468f5ae-eb5a-486f-8704-17e351920970"",
-                    ""path"": """",
+                    ""id"": ""ae197518-0cfc-4cb0-87d7-f947b5521729"",
+                    ""path"": ""<Keyboard>/enter"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""New action"",
+                    ""action"": ""SelectAnswer"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""36390a87-67e1-4b9b-bcbf-aa3e4cb31af8"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SelectAnswer"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""AWSD"",
+                    ""id"": ""b1bc99dc-b57d-4ca1-91ec-8541c6f397d3"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Navigation"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""3d6fca98-be45-44fb-8b36-22c32fc8d7df"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Navigation"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""9f3bf118-198c-41e2-8ed9-4a73ab00925e"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Navigation"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""6215f26e-468f-4494-9b95-ced9d33417ac"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Navigation"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""e3f10818-1ca8-4ac6-ae75-7c382ca5d377"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Navigation"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Arrow"",
+                    ""id"": ""d3c276a2-4450-482f-9325-1e582b9bc41c"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Navigation"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""756cf8e8-6ebe-402f-b19c-7a02f6014895"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Navigation"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""1b118899-45e4-488e-b842-f287d58727cd"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Navigation"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""dd6f2897-d0ca-4090-ae9b-78c4202f429e"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Navigation"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""3dc7be95-6380-47fc-b438-6449eea48506"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Navigation"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
     ],
-    ""controlSchemes"": [
-        {
-            ""name"": ""Desktop"",
-            ""bindingGroup"": ""Desktop"",
-            ""devices"": []
-        }
-    ]
+    ""controlSchemes"": []
 }");
         // MenuInicial
         m_MenuInicial = asset.FindActionMap("MenuInicial", throwIfNotFound: true);
         m_MenuInicial_StartGame = m_MenuInicial.FindAction("StartGame", throwIfNotFound: true);
         // Game
         m_Game = asset.FindActionMap("Game", throwIfNotFound: true);
-        m_Game_Newaction = m_Game.FindAction("New action", throwIfNotFound: true);
+        m_Game_Click = m_Game.FindAction("Click", throwIfNotFound: true);
+        m_Game_MousePosition = m_Game.FindAction("MousePosition", throwIfNotFound: true);
+        m_Game_ExitGame = m_Game.FindAction("ExitGame", throwIfNotFound: true);
         // MiniGame
         m_MiniGame = asset.FindActionMap("MiniGame", throwIfNotFound: true);
-        m_MiniGame_Newaction = m_MiniGame.FindAction("New action", throwIfNotFound: true);
+        m_MiniGame_Navigation = m_MiniGame.FindAction("Navigation", throwIfNotFound: true);
+        m_MiniGame_SelectAnswer = m_MiniGame.FindAction("SelectAnswer", throwIfNotFound: true);
     }
 
     ~@InputPlayer()
@@ -379,7 +546,9 @@ public partial class @InputPlayer: IInputActionCollection2, IDisposable
     // Game
     private readonly InputActionMap m_Game;
     private List<IGameActions> m_GameActionsCallbackInterfaces = new List<IGameActions>();
-    private readonly InputAction m_Game_Newaction;
+    private readonly InputAction m_Game_Click;
+    private readonly InputAction m_Game_MousePosition;
+    private readonly InputAction m_Game_ExitGame;
     /// <summary>
     /// Provides access to input actions defined in input action map "Game".
     /// </summary>
@@ -392,9 +561,17 @@ public partial class @InputPlayer: IInputActionCollection2, IDisposable
         /// </summary>
         public GameActions(@InputPlayer wrapper) { m_Wrapper = wrapper; }
         /// <summary>
-        /// Provides access to the underlying input action "Game/Newaction".
+        /// Provides access to the underlying input action "Game/Click".
         /// </summary>
-        public InputAction @Newaction => m_Wrapper.m_Game_Newaction;
+        public InputAction @Click => m_Wrapper.m_Game_Click;
+        /// <summary>
+        /// Provides access to the underlying input action "Game/MousePosition".
+        /// </summary>
+        public InputAction @MousePosition => m_Wrapper.m_Game_MousePosition;
+        /// <summary>
+        /// Provides access to the underlying input action "Game/ExitGame".
+        /// </summary>
+        public InputAction @ExitGame => m_Wrapper.m_Game_ExitGame;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -421,9 +598,15 @@ public partial class @InputPlayer: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_GameActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_GameActionsCallbackInterfaces.Add(instance);
-            @Newaction.started += instance.OnNewaction;
-            @Newaction.performed += instance.OnNewaction;
-            @Newaction.canceled += instance.OnNewaction;
+            @Click.started += instance.OnClick;
+            @Click.performed += instance.OnClick;
+            @Click.canceled += instance.OnClick;
+            @MousePosition.started += instance.OnMousePosition;
+            @MousePosition.performed += instance.OnMousePosition;
+            @MousePosition.canceled += instance.OnMousePosition;
+            @ExitGame.started += instance.OnExitGame;
+            @ExitGame.performed += instance.OnExitGame;
+            @ExitGame.canceled += instance.OnExitGame;
         }
 
         /// <summary>
@@ -435,9 +618,15 @@ public partial class @InputPlayer: IInputActionCollection2, IDisposable
         /// <seealso cref="GameActions" />
         private void UnregisterCallbacks(IGameActions instance)
         {
-            @Newaction.started -= instance.OnNewaction;
-            @Newaction.performed -= instance.OnNewaction;
-            @Newaction.canceled -= instance.OnNewaction;
+            @Click.started -= instance.OnClick;
+            @Click.performed -= instance.OnClick;
+            @Click.canceled -= instance.OnClick;
+            @MousePosition.started -= instance.OnMousePosition;
+            @MousePosition.performed -= instance.OnMousePosition;
+            @MousePosition.canceled -= instance.OnMousePosition;
+            @ExitGame.started -= instance.OnExitGame;
+            @ExitGame.performed -= instance.OnExitGame;
+            @ExitGame.canceled -= instance.OnExitGame;
         }
 
         /// <summary>
@@ -475,7 +664,8 @@ public partial class @InputPlayer: IInputActionCollection2, IDisposable
     // MiniGame
     private readonly InputActionMap m_MiniGame;
     private List<IMiniGameActions> m_MiniGameActionsCallbackInterfaces = new List<IMiniGameActions>();
-    private readonly InputAction m_MiniGame_Newaction;
+    private readonly InputAction m_MiniGame_Navigation;
+    private readonly InputAction m_MiniGame_SelectAnswer;
     /// <summary>
     /// Provides access to input actions defined in input action map "MiniGame".
     /// </summary>
@@ -488,9 +678,13 @@ public partial class @InputPlayer: IInputActionCollection2, IDisposable
         /// </summary>
         public MiniGameActions(@InputPlayer wrapper) { m_Wrapper = wrapper; }
         /// <summary>
-        /// Provides access to the underlying input action "MiniGame/Newaction".
+        /// Provides access to the underlying input action "MiniGame/Navigation".
         /// </summary>
-        public InputAction @Newaction => m_Wrapper.m_MiniGame_Newaction;
+        public InputAction @Navigation => m_Wrapper.m_MiniGame_Navigation;
+        /// <summary>
+        /// Provides access to the underlying input action "MiniGame/SelectAnswer".
+        /// </summary>
+        public InputAction @SelectAnswer => m_Wrapper.m_MiniGame_SelectAnswer;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -517,9 +711,12 @@ public partial class @InputPlayer: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_MiniGameActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_MiniGameActionsCallbackInterfaces.Add(instance);
-            @Newaction.started += instance.OnNewaction;
-            @Newaction.performed += instance.OnNewaction;
-            @Newaction.canceled += instance.OnNewaction;
+            @Navigation.started += instance.OnNavigation;
+            @Navigation.performed += instance.OnNavigation;
+            @Navigation.canceled += instance.OnNavigation;
+            @SelectAnswer.started += instance.OnSelectAnswer;
+            @SelectAnswer.performed += instance.OnSelectAnswer;
+            @SelectAnswer.canceled += instance.OnSelectAnswer;
         }
 
         /// <summary>
@@ -531,9 +728,12 @@ public partial class @InputPlayer: IInputActionCollection2, IDisposable
         /// <seealso cref="MiniGameActions" />
         private void UnregisterCallbacks(IMiniGameActions instance)
         {
-            @Newaction.started -= instance.OnNewaction;
-            @Newaction.performed -= instance.OnNewaction;
-            @Newaction.canceled -= instance.OnNewaction;
+            @Navigation.started -= instance.OnNavigation;
+            @Navigation.performed -= instance.OnNavigation;
+            @Navigation.canceled -= instance.OnNavigation;
+            @SelectAnswer.started -= instance.OnSelectAnswer;
+            @SelectAnswer.performed -= instance.OnSelectAnswer;
+            @SelectAnswer.canceled -= instance.OnSelectAnswer;
         }
 
         /// <summary>
@@ -567,19 +767,6 @@ public partial class @InputPlayer: IInputActionCollection2, IDisposable
     /// Provides a new <see cref="MiniGameActions" /> instance referencing this action map.
     /// </summary>
     public MiniGameActions @MiniGame => new MiniGameActions(this);
-    private int m_DesktopSchemeIndex = -1;
-    /// <summary>
-    /// Provides access to the input control scheme.
-    /// </summary>
-    /// <seealso cref="UnityEngine.InputSystem.InputControlScheme" />
-    public InputControlScheme DesktopScheme
-    {
-        get
-        {
-            if (m_DesktopSchemeIndex == -1) m_DesktopSchemeIndex = asset.FindControlSchemeIndex("Desktop");
-            return asset.controlSchemes[m_DesktopSchemeIndex];
-        }
-    }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "MenuInicial" which allows adding and removing callbacks.
     /// </summary>
@@ -603,12 +790,26 @@ public partial class @InputPlayer: IInputActionCollection2, IDisposable
     public interface IGameActions
     {
         /// <summary>
-        /// Method invoked when associated input action "New action" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "Click" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnNewaction(InputAction.CallbackContext context);
+        void OnClick(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "MousePosition" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnMousePosition(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "ExitGame" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnExitGame(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "MiniGame" which allows adding and removing callbacks.
@@ -618,11 +819,18 @@ public partial class @InputPlayer: IInputActionCollection2, IDisposable
     public interface IMiniGameActions
     {
         /// <summary>
-        /// Method invoked when associated input action "New action" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "Navigation" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnNewaction(InputAction.CallbackContext context);
+        void OnNavigation(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "SelectAnswer" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSelectAnswer(InputAction.CallbackContext context);
     }
 }
