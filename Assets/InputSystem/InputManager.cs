@@ -110,6 +110,7 @@ public class InputManager : MonoBehaviour {
         moveDirection = transformVector2InMoveDirection(vetor);
 
         MovedDirection?.Invoke(moveDirection);
+        
     }
     public void OnSelectAnswer() {
         SelectedAnswer?.Invoke();
