@@ -14,8 +14,8 @@ public class WindTurbine : MonoBehaviour {
     private float energyPercentProduce = 0.05f;
     [Header("Broken")]
     [SerializeField] private bool isFreeForBroken = true;
-    [SerializeField] private float minTimeBroken = 5f;
-    [SerializeField] private float maxTimeBroken = 15f;
+    [SerializeField] private float minTimeBroken = 3f;
+    [SerializeField] private float maxTimeBroken = 12f;
     [SerializeField] private float timeToFix = 3f;
     private bool isBroken = false;
     private bool isFixing = false;
@@ -89,9 +89,11 @@ public class WindTurbine : MonoBehaviour {
     private IEnumerator timerProduceEnergy() {
         while (true) {
             yield return new WaitForSeconds(1f);
-            if (isStop) continue;
-            float energy = calculateEnergyBySpeedWind(WindControler.windControler.windSpeed);
-            energyGenerated?.Invoke(energy);
+            float energy = 0;
+            if (!isStop) {
+                energy = calculateEnergyBySpeedWind(WindControler.windControler.windSpeed);
+                energyGenerated?.Invoke(energy);
+            }
             UpdatedTextPercentGerador?.Invoke(energy, indexTurbine);
         }
     }
