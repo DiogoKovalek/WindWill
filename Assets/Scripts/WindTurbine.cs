@@ -12,6 +12,15 @@ public class WindTurbine : MonoBehaviour {
 
     [Header("Energy")]
     private float energyPercentProduce = 0.05f;
+    [Header("Broken")]
+    [SerializeField] private bool isFreeForBroken = true;
+    [SerializeField] private float minTimeBroken = 5f;
+    [SerializeField] private float maxTimeBroken = 15f;
+    [SerializeField] private float timeToFix = 3f;
+    private bool isBroken = false;
+    private bool isFixing = false;
+    [SerializeField] private GameObject IconToFix;
+    [SerializeField] private GameObject IconFixing;
 
     #region EVENTS
     public event Action<float> energyGenerated = delegate {};
@@ -25,19 +34,58 @@ public class WindTurbine : MonoBehaviour {
         }
         //Temporario
         UpdatedImageColorTurbine?.Invoke(COLOR_ICON.GREN, indexTurbine);
+
+        //Iniciar cronometro de quebrar
+        if(isFreeForBroken) randomizeBrokenTime();
     }
 
     void Update() {
         if (WindControler.windControler != null) {
             if (WindControler.windControler.windSpeed >= WindControler.windControler.windProduce[5] ||
-                WindControler.windControler.windSpeed < WindControler.windControler.windProduce[1]) isStop = true;
+                WindControler.windControler.windSpeed < WindControler.windControler.windProduce[1]||
+                isBroken) isStop = true;
             else {
                 isStop = false;
                 Paletas?.transform.Rotate(Vector3.forward * WindControler.windControler.windSpeed * speedMultiplier * Time.deltaTime);
             }
         }
     }
+    private void randomizeBrokenTime() {
+        float timeToBreak = UnityEngine.Random.Range(minTimeBroken, maxTimeBroken);
+        StartCoroutine(brokenTimer(timeToBreak));
+    }
 
+    private IEnumerator brokenTimer(float time) {
+        yield return new WaitForSeconds(time);
+        brokenTurbine();
+    }
+    private void brokenTurbine() {
+        isBroken = true;
+        isFixing = false;
+        UpdatedImageColorTurbine?.Invoke(COLOR_ICON.RED, indexTurbine);
+        IconToFix.SetActive(true);
+    }
+
+    private void fixTurbine() {
+        isBroken = false;
+        isFixing = false;
+        UpdatedImageColorTurbine?.Invoke(COLOR_ICON.GREN, indexTurbine);
+        IconFixing.SetActive(false);
+        randomizeBrokenTime();
+    }
+
+    public void StartFixTurbine() {
+        if(isBroken && !isFixing) {
+            isFixing = true;
+            IconToFix.SetActive(false);
+            IconFixing.SetActive(true);
+            StartCoroutine(delayFixTurbine());
+        }
+    }
+    private IEnumerator delayFixTurbine() {
+        yield return new WaitForSeconds(timeToFix);
+        fixTurbine();
+    }
     private IEnumerator timerProduceEnergy() {
         while (true) {
             yield return new WaitForSeconds(1f);

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Stopwatch : MonoBehaviour {
-    private int timeToSurvive = 30;
+    private int timeToSurvive = 45;
     private int time = 0;
 
     #region EVENTS

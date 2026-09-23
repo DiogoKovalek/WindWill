@@ -254,6 +254,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3641907488515902600, guid: 734970d85c710824a942019cde817d47, type: 3}
+      propertyPath: isFreeForBroken
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9109408972877413218, guid: 734970d85c710824a942019cde817d47, type: 3}
       propertyPath: m_Name
       value: Aerogerador
@@ -1908,6 +1912,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 920586735128066218, guid: 734970d85c710824a942019cde817d47, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3641907488515902600, guid: 734970d85c710824a942019cde817d47, type: 3}
+      propertyPath: isFreeForBroken
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9109408972877413218, guid: 734970d85c710824a942019cde817d47, type: 3}

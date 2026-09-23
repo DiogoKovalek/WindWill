@@ -62,6 +62,9 @@ public class GameControler : MonoBehaviour {
         LevelManager.ToGoHomeScreen();
     }
     public void OnClickInSomething(RaycastHit2D hit) {
-        Debug.Log("Hit");
+        WindTurbine windTurbine = hit.collider?.GetComponent<WindTurbine>();
+        if(windTurbine != null) {
+            windTurbine.StartFixTurbine();
+        }
     }
 }
