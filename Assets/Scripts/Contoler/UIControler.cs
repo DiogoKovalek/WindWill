@@ -18,6 +18,9 @@ public class UIControler : MonoBehaviour {
     [SerializeField] private TextMeshProUGUI textSpeedWind;
     [SerializeField] private TextMeshProUGUI textSpendHouses;
     [SerializeField] private TextMeshProUGUI textPercentGerador;
+    [SerializeField] private TextMeshProUGUI textTimer;
+    [SerializeField] private GameObject textLevelComplete;
+    [SerializeField] private GameObject textGameOver;
 
     [SerializeField] private Color32[] colorsIcons;
     [SerializeField] private Image[] imagesIconsTurbine;
@@ -31,8 +34,13 @@ public class UIControler : MonoBehaviour {
     public event Action ClickedArrowLeft = delegate { };
     public event Action ClickedArroRight = delegate { };
     #endregion
-    
+
     #region Textos
+
+    void Awake() {
+        textLevelComplete?.SetActive(false);
+        textGameOver?.SetActive(false);
+    }
     public void OnUpdatedTextSpeedWind(float speed) {
         textSpeedWind.text = $"{speed:F2} m/s";
     }
@@ -75,6 +83,16 @@ public class UIControler : MonoBehaviour {
                 imageIconTurbine.color = colorsIcons[0];
                 break;
         }
+    }
+
+    public void OnShowUILevelComplete() {
+        textLevelComplete?.SetActive(true);
+    }
+    public void OnShowUIGameOver() {
+        textGameOver?.SetActive(true);
+    }
+    public void OnUpdateTime(int value) {
+        textTimer.text = $"{value}";
     }
     
     #endregion

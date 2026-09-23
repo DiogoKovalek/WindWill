@@ -6,6 +6,7 @@ public class EventManager : MonoBehaviour {
     [SerializeField] private CameraControler cameraControler;
     [SerializeField] private UIControler uiControler;
     [SerializeField] private WindControler windControler;
+    [SerializeField] private Stopwatch stopwatch;
     [SerializeField] private GameControler gameControler;
     [SerializeField] private EnergyExpenditureControler energyExpenditureControler;
     [SerializeField] private PlayerControler playerControler;
@@ -30,6 +31,10 @@ public class EventManager : MonoBehaviour {
         uiControler.ClickedArrowLeft += cameraControler.OnMoveCameraToLeft;
         uiControler.ClickedArroRight += cameraControler.OnMoveCameraToRight;
 
+        //GameControler
+        gameControler.ShowedUILevelComplete += uiControler.OnShowUILevelComplete;
+        gameControler.ShowedUIGameOver += uiControler.OnShowUIGameOver;
+
         //Batery
         batery.GameOvered += gameControler.OnGameOver;
 
@@ -47,5 +52,9 @@ public class EventManager : MonoBehaviour {
         //WindControler
         windControler.UpdatedTextSpeedWind += uiControler.OnUpdatedTextSpeedWind;
         windControler.UpdatedImageColorWind += uiControler.OnUpdatedColorImageWind;
+
+        //stopwatch
+        stopwatch.TimeOvered += gameControler.OnTimeOver;
+        stopwatch.UpdatedTimeUI += uiControler.OnUpdateTime;
     }
 }

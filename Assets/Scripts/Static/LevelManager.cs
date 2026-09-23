@@ -9,7 +9,7 @@ public static class LevelManager
 {
     private static readonly String menuScene = "Menu";
     private static readonly String gameScene = "Level";
-    private static readonly String miniGameScene = "Questionario";
+    private static readonly String miniGameScene = "Questionary";
     private static readonly LevelAtributes[] atributesLevel = new LevelAtributes[]
     {
         new LevelAtributes {energySpend = 1}
