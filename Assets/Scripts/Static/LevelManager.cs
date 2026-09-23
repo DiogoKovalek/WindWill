@@ -5,8 +5,7 @@ using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public static class LevelManager
-{
+public static class LevelManager {
     private static readonly String menuScene = "Menu";
     private static readonly String gameScene = "Level";
     private static readonly String miniGameScene = "Questionary";
@@ -14,7 +13,8 @@ public static class LevelManager
     {
         new LevelAtributes {energySpend = 1}
     };
-    private static int level = 0;
+    public static int level = 0;
+    private static int quantLevels = 3;
 
     public static void StartGame() {
         level = 0;
@@ -22,8 +22,13 @@ public static class LevelManager
         //MinigameLevel();
     }
     public static void NextLevel() {
-        level += 1;
-        SceneManager.LoadScene(gameScene);
+        if (level == quantLevels) {
+            ToGoHomeScreen();
+        }
+        else {
+            level += 1;
+            SceneManager.LoadScene(gameScene);
+        }
     }
     public static void MinigameLevel() {
         SceneManager.LoadScene(miniGameScene);

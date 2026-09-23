@@ -9,6 +9,7 @@ public class GameControler : MonoBehaviour {
     //===================================================
 
     private bool endGame = false;
+    private float timeDelayTradeScene = 3f;
 
     #region EVENTS
     public event Action ShowedUILevelComplete = delegate { };
@@ -18,6 +19,7 @@ public class GameControler : MonoBehaviour {
         if (InputManager.inputManager != null) {
             InputManager.inputManager.tradeMap(ACTION_MAP.GAME);
         }
+        Debug.Log(LevelManager.level);
     }
     void OnEnable() {
         if (InputManager.inputManager != null) {
@@ -44,10 +46,17 @@ public class GameControler : MonoBehaviour {
     private void levelComplete() {
         endGame = true;
         ShowedUILevelComplete?.Invoke();
+        StartCoroutine(delayTradeScene(true));
     }
     private void gameOver() {
         endGame = true;
         ShowedUIGameOver?.Invoke();
+        StartCoroutine(delayTradeScene(false));
+    }
+    private IEnumerator delayTradeScene(bool isLevelComplete) {
+        yield return new WaitForSeconds(timeDelayTradeScene);
+        if(isLevelComplete) LevelManager.MinigameLevel();
+        else LevelManager.ToGoHomeScreen();
     }
     public void OnExitGame() {
         LevelManager.ToGoHomeScreen();

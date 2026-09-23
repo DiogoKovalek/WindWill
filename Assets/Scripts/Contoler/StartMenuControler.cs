@@ -19,6 +19,6 @@ public class StartMenuControler : MonoBehaviour {
         }
     }
     public void OnStartGame() {
-        LevelManager.StartGame();
+        LevelManager.MinigameLevel();
     }
 }
