@@ -2616,11 +2616,11 @@ MonoBehaviour:
   - 7
   - 10
   - 14
-  minTimeToTradeIndexForce: 7
-  maxTimeToTradeIndexForce: 15
+  minTimeToTradeIndexForce: 6
+  maxTimeToTradeIndexForce: 12
   timeDelayUpdateSpeed: 1
-  minVariationSpeed: 0.01
-  maxVariationSpeed: 1
+  VariationSpeed: 0.25
+  VariationSpeedOutRange: 1
 --- !u!114 &1252140066
 MonoBehaviour:
   m_ObjectHideFlags: 0

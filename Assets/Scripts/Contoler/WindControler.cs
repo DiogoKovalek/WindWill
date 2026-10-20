@@ -14,53 +14,53 @@ public class WindControler : MonoBehaviour {
     private byte indexForce = 2; // valor de 1 a 3 para representar Vento Fraco/Medio/Forte
 
     #region EVENTS
-    public event Action<float> UpdatedTextSpeedWind = delegate {};
-    public event Action<COLOR_ICON> UpdatedImageColorWind = delegate {};
+    public event Action<float> UpdatedTextSpeedWind = delegate { };
+    public event Action<COLOR_ICON> UpdatedImageColorWind = delegate { };
     #endregion
 
     // Wind Varibles ===============================================
-    public float[] windProduce = {3, 7, 10, 14};
+    public float[] windProduce = { 3, 7, 10, 14 };
 
     [Header("Times")]
-    [SerializeField] private float minTimeToTradeIndexForce; 
-    [SerializeField] private float maxTimeToTradeIndexForce; 
+    [SerializeField] private float minTimeToTradeIndexForce;
+    [SerializeField] private float maxTimeToTradeIndexForce;
     [SerializeField] private float timeDelayUpdateSpeed;
 
     [Header("Targets")]
-    [SerializeField] private float minVariationSpeed;
-    [SerializeField] private float maxVariationSpeed;
+    [SerializeField] private float VariationSpeed = 0.5f;
+    [SerializeField] private float VariationSpeedOutRange = 1;
     private byte toIndexForce;
     //==============================================================
     void Awake() {
         if (windControler == null) windControler = this;
         else Destroy(this);
 
+        
         StartCoroutine(corrotineUpdateSpeedWind());
         StartCoroutine(corrotineTradeIndexForce());
     }
+    void Start() {
+        UpdatedTextSpeedWind?.Invoke(windSpeed);
+    }
 
     IEnumerator corrotineUpdateSpeedWind() {
-        
-        float speedVariation = UnityEngine.Random.Range(minVariationSpeed, maxVariationSpeed);
-        speedVariation = (float) Math.Round(speedVariation, 2);
-        byte signal = (byte) UnityEngine.Random.Range(0,2);
-
-        if(signal == 1) {
-            speedVariation *= -1;
-        }
-
-
-        if (windSpeed < windProduce[indexForce - 1] && windSpeed >= windProduce[indexForce]) { // O vento não está no intervalo do indexForce
+        if (windSpeed < windProduce[indexForce - 1] || windSpeed >= windProduce[indexForce]) { // O vento não está no intervalo do indexForce
             // Verificar se o intervalo está maior ou menor
             // Adicionar + 1 para tentar chegar ao intervalo
-            windSpeed += windSpeed < windProduce[indexForce - 1] ? 1 : -1;
+            windSpeed += windSpeed < windProduce[indexForce - 1] ? VariationSpeedOutRange : -VariationSpeedOutRange;
 
             //Se chegou ao intervalo, execute a corrotina de troca de indexForce novamente
-            if(windSpeed >= windProduce[indexForce - 1] && windSpeed < windProduce[indexForce]) {
+            if (windSpeed >= windProduce[indexForce - 1] && windSpeed < windProduce[indexForce]) {
                 StartCoroutine(corrotineTradeIndexForce());
             }
         }
         else { // O vento está no intervalo do indexForce;
+            byte signal = (byte)UnityEngine.Random.Range(0, 2);
+            float speedVariation = VariationSpeed;
+            if (signal == 1) {
+                speedVariation *= -1;
+            }
+
             //Verificar se a variacao está no limite
             float newWindSpeed = windSpeed + speedVariation;
             if (newWindSpeed >= windProduce[indexForce - 1] && newWindSpeed < windProduce[indexForce]) {
@@ -75,11 +75,13 @@ public class WindControler : MonoBehaviour {
 
         // Atualizar UI
         UpdatedTextSpeedWind?.Invoke(windSpeed);
-        if(windSpeed <= windProduce[0] || windSpeed >= windProduce[3]) {
+        if (windSpeed < windProduce[1] || windSpeed > windProduce[3]) {
             UpdatedImageColorWind?.Invoke(COLOR_ICON.RED);
-        }else if(windSpeed < windProduce[1]) {
+        }
+        else if (windSpeed < windProduce[2]) {
             UpdatedImageColorWind?.Invoke(COLOR_ICON.YELLOW);
-        }else if (windSpeed < windProduce[2]) {
+        }
+        else if (windSpeed <= windProduce[3]) {
             UpdatedImageColorWind?.Invoke(COLOR_ICON.GREN);
         }
 
@@ -91,14 +93,16 @@ public class WindControler : MonoBehaviour {
         float timeToTradeIndexFoce = UnityEngine.Random.Range(minTimeToTradeIndexForce, maxTimeToTradeIndexForce);
         yield return new WaitForSeconds(timeToTradeIndexFoce);
 
-        if(indexForce == 0) {
+        Debug.Log("Troca o intervalo");
+        if (indexForce == 1) {
             indexForce++;
-        }else if(indexForce == 2) {
+        }
+        else if (indexForce == 3) {
             indexForce--;
-        }  
+        }
         else {
-            byte direction = (byte) UnityEngine.Random.Range(0,2); // 0 -> decress 1 -> acress
-            indexForce += (byte) (direction == 0 ? -1 : 1);
+            byte direction = (byte)UnityEngine.Random.Range(0, 2); // 0 -> decress 1 -> acress
+            indexForce += (byte)(direction == 0 ? -1 : 1);
         }
     }
 
