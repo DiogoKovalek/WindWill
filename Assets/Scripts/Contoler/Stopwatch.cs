@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Stopwatch : MonoBehaviour {
-    private int timeToSurvive = 45;
+    [SerializeField] private int timeToSurvive = 45;
     private int time = 0;
 
     #region EVENTS
@@ -13,6 +13,7 @@ public class Stopwatch : MonoBehaviour {
     #endregion
     void Start() {
         time = timeToSurvive;
+        UpdatedTimeUI(time);
         StartCoroutine(stopwatch());
     }
 

@@ -19,7 +19,6 @@ public class GameControler : MonoBehaviour {
         if (InputManager.inputManager != null) {
             InputManager.inputManager.tradeMap(ACTION_MAP.GAME);
         }
-        Debug.Log(LevelManager.level);
     }
     void OnEnable() {
         if (InputManager.inputManager != null) {

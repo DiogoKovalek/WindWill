@@ -10,8 +10,8 @@ public class Batery : MonoBehaviour {
     [SerializeField] private Sprite[] sprites;
     private readonly float[] percentageIntervals = { 0.2f, 0.5f };
 
-    private float numFull = 50;
-    private const float maxFull = 100f;
+    [SerializeField] private float numFull = 50;
+    [SerializeField] private float maxFull = 100f;
     //Relacionado ao sprRenFull.size 
     private const float maxFullHight = 5;
     private const float minFullHight = 0.5f;
@@ -53,7 +53,7 @@ public class Batery : MonoBehaviour {
     }
 
     public void OnReciveEnergy(float energy) {
-        numFull = numFull + energy > 100 ? 100 : numFull + energy;
+        numFull = numFull + energy > maxFull ? maxFull : numFull + energy;
     }
     public void OnExpecturedEnergy(float energy) {
         numFull = numFull - energy < 0 ? 0 : numFull - energy;
