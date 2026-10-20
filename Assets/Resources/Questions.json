@@ -1,0 +1,40 @@
+{
+    "perguntas": [
+        {
+            "enunciado": "O que acontece com os cataventos gigantes (aerogeradores) quando o vento está muito fraco?",
+            "alternativas": [
+                "Eles ficam parados aguardando o vento ter força suficiente.",
+                "Eles continuam girando na velocidade máxima.",
+                "Eles queimam por causa da falta de ventilação.",
+                "Eles usam eletricidade da tomada para girar sozinhos."
+            ]
+        },
+        {
+            "enunciado": "É correto afirmar que a energia do vento varia bastante ao longo do dia. O que isso significa?",
+            "alternativas": [
+                "Que a quantidade de energia muda porque a força e a direção do vento mudam.",
+                "Que o vento sopra sempre na mesma velocidade e sem parar.",
+                "Que os cataventos só produzem energia nos dias de chuva.",
+                "Que a energia eólica funciona apenas durante a noite."
+            ]
+        },
+        {
+            "enunciado": "Como as cidades evitam ficar sem luz nos dias em que quase não venta?",
+            "alternativas": [
+                "Usando outras fontes de energia juntas, como a solar e as hidrelétricas.",
+                "Comprando vento armazenado de outras cidades.",
+                "Fazendo ventiladores gigantes assoprarem o parque eólico.",
+                "Desligando a energia de todas as casas até o vento voltar."
+            ]
+        },
+        {
+            "enunciado": "Ao planejar a construção de um parque eólico, qual é o cuidado mais importante que devemos ter ao escolher o local das turbinas?",
+            "alternativas": [
+                "Construir os parques longe do caminho das aves e onde a direção do vento mude com frequência para um melhor aproveitamento.",
+                "Cobertura total do solo com cimento para impedir o crescimento de qualquer planta na região.",
+                "Selecionar áreas de relevo extremamente acidentado e vales fechados, pois esses formatos de terreno multiplicam a velocidade do vento.",
+                "Não é necessário escolher o local."
+            ]
+        }
+    ]
+}
