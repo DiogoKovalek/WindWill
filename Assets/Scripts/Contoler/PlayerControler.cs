@@ -14,6 +14,11 @@ public class PlayerControler : MonoBehaviour {
     private Transform[] listPoints;
     private Coroutine coroutineMovePlayer;
 
+    [Header("Move to Fix")]
+    [SerializeField] private float timeToGoInTurbine = 1f;
+    [SerializeField] private float timeAlpha = 0.5f;
+    public bool isFixing = false;
+
     #region EVENTS
 
     #endregion
@@ -38,6 +43,7 @@ public class PlayerControler : MonoBehaviour {
         }
     }
     private IEnumerator movePlayer(int ToIndex, float timeToMove) {
+        if(isFixing) yield break; // Não permite se mover enquanto estiver consertando
         float t = 0;
         Vector3 startPos = gameObject.transform.position;
         Vector3 targetPos = listPoints[ToIndex].position;
@@ -57,4 +63,17 @@ public class PlayerControler : MonoBehaviour {
         anim.SetBool("IsMove", false);
         coroutineMovePlayer = null;
     }
+
+    #region Conserto de aerogerador
+    public void OnPlayerStartToFixTurbine(WindTurbine windTurbine) {
+        if(isFixing) return;
+        isFixing = true;
+        windTurbine.StartFixTurbine(OnPlayerEndToFixTurbine);
+    }
+
+    public void OnPlayerEndToFixTurbine() {
+        if(!isFixing) return;
+        isFixing = false;
+    }
+    #endregion
 }

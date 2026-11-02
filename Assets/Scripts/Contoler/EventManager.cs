@@ -34,6 +34,7 @@ public class EventManager : MonoBehaviour {
         //GameControler
         gameControler.ShowedUILevelComplete += uiControler.OnShowUILevelComplete;
         gameControler.ShowedUIGameOver += uiControler.OnShowUIGameOver;
+        gameControler.PlayerStartToTurbine += playerControler.OnPlayerStartToFixTurbine;
 
         //Batery
         batery.GameOvered += gameControler.OnGameOver;

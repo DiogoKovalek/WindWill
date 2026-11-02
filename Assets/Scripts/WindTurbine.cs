@@ -74,17 +74,18 @@ public class WindTurbine : MonoBehaviour {
         randomizeBrokenTime();
     }
 
-    public void StartFixTurbine() {
+    public void StartFixTurbine(Action playerEndFix) {
         if(isBroken && !isFixing) {
             isFixing = true;
             IconToFix.SetActive(false);
             IconFixing.SetActive(true);
-            StartCoroutine(delayFixTurbine());
+            StartCoroutine(delayFixTurbine(playerEndFix));
         }
     }
-    private IEnumerator delayFixTurbine() {
+    private IEnumerator delayFixTurbine(Action playerEndFix) {
         yield return new WaitForSeconds(timeToFix);
         fixTurbine();
+        playerEndFix?.Invoke();
     }
     private IEnumerator timerProduceEnergy() {
         while (true) {

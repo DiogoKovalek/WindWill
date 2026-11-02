@@ -14,6 +14,7 @@ public class GameControler : MonoBehaviour {
     #region EVENTS
     public event Action ShowedUILevelComplete = delegate { };
     public event Action ShowedUIGameOver = delegate { };
+    public event Action<WindTurbine> PlayerStartToTurbine = delegate { };
     #endregion
     void Start() {
         if (InputManager.inputManager != null) {
@@ -63,7 +64,7 @@ public class GameControler : MonoBehaviour {
     public void OnClickInSomething(RaycastHit2D hit) {
         WindTurbine windTurbine = hit.collider?.GetComponent<WindTurbine>();
         if(windTurbine != null) {
-            windTurbine.StartFixTurbine();
+            PlayerStartToTurbine?.Invoke(windTurbine);
         }
     }
 }
