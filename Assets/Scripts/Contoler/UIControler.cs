@@ -115,6 +115,10 @@ public class UIControler : MonoBehaviour {
     public void OnActiveArrowRight(bool isActive) {
         btArrowRight.SetActive(isActive);
     }
+    public void OnActivateArrowRightAndLeft(bool isActive) {
+        btArrowLeft.SetActive(isActive);
+        btArrowRight.SetActive(isActive);
+    }
     #endregion 
 }
 

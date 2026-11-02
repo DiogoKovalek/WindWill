@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,10 +18,10 @@ public class PlayerControler : MonoBehaviour {
     [Header("Move to Fix")]
     [SerializeField] private float timeToGoInTurbine = 1f;
     [SerializeField] private float timeAlpha = 0.5f;
-    public bool isFixing = false;
+    private bool isFixing = false;
 
     #region EVENTS
-
+    public event Action<bool> DisabledArrowsToFix = delegate { };
     #endregion
 
     void Awake() {
@@ -43,7 +44,7 @@ public class PlayerControler : MonoBehaviour {
         }
     }
     private IEnumerator movePlayer(int ToIndex, float timeToMove) {
-        if(isFixing) yield break; // Não permite se mover enquanto estiver consertando
+        if (isFixing) yield break; // Não permite se mover enquanto estiver consertando
         float t = 0;
         Vector3 startPos = gameObject.transform.position;
         Vector3 targetPos = listPoints[ToIndex].position;
@@ -66,14 +67,16 @@ public class PlayerControler : MonoBehaviour {
 
     #region Conserto de aerogerador
     public void OnPlayerStartToFixTurbine(WindTurbine windTurbine) {
-        if(isFixing) return;
+        if (isFixing) return;
         isFixing = true;
         windTurbine.StartFixTurbine(OnPlayerEndToFixTurbine);
+        DisabledArrowsToFix?.Invoke(false);
     }
 
     public void OnPlayerEndToFixTurbine() {
-        if(!isFixing) return;
+        if (!isFixing) return;
         isFixing = false;
+        DisabledArrowsToFix?.Invoke(true);
     }
     #endregion
 }
