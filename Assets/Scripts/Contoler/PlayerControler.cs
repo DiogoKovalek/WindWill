@@ -18,8 +18,8 @@ public class PlayerControler : MonoBehaviour {
     [Header("Move to Fix")]
     [SerializeField] private float timeToGoInTurbine = 1f;
     [SerializeField] private float timeAlpha = 0.5f;
-    private bool isFixing = false;
-
+    private bool isFixingProcess = false;
+    private bool isPlayeInAerogerador = false;
     #region EVENTS
     public event Action<bool> DisabledArrowsToFix = delegate { };
     #endregion
@@ -44,7 +44,7 @@ public class PlayerControler : MonoBehaviour {
         }
     }
     private IEnumerator movePlayer(int ToIndex, float timeToMove) {
-        if (isFixing) yield break; // Não permite se mover enquanto estiver consertando
+        if (isFixingProcess) yield break; // Não permite se mover enquanto estiver consertando
         float t = 0;
         Vector3 startPos = gameObject.transform.position;
         Vector3 targetPos = listPoints[ToIndex].position;
@@ -66,17 +66,44 @@ public class PlayerControler : MonoBehaviour {
     }
 
     #region Conserto de aerogerador
+
+    // === Odem cronologica ===
+    // Player recebe o evento
+    // Player vai até o Aerogerador
+    // Player entra no aerogerador
+    // Player conserta o aerogerador (primeiramente com tempo, depois pelos mini game)
+    // Player sai do aerogerado
+    // Player volta para a posicao inicial
     public void OnPlayerStartToFixTurbine(WindTurbine windTurbine) {
-        if (isFixing) return;
-        isFixing = true;
-        windTurbine.StartFixTurbine(OnPlayerEndToFixTurbine);
+        if (isFixingProcess) return;
+        // Inicia corrotina para gerenciar o processo de conserto
+        StartCoroutine(PlayerProcessFixTurbine(windTurbine));
+    }
+
+    private IEnumerator PlayerProcessFixTurbine(WindTurbine windTurbine) {
+        isFixingProcess = true;
         DisabledArrowsToFix?.Invoke(false);
+
+        // Vai até o aerogerador
+
+        // Entra no aerogerador
+        isPlayeInAerogerador = true;
+
+        // Inicia o conserto e espera finalizar
+        windTurbine.StartFixTurbine(OnPlayerEndToFixTurbine);
+        yield return new WaitUntil(() => isPlayeInAerogerador == false);
+        
+        // Sai do aerogerador
+
+        // Volta para a posicao inicial
+
+        isFixingProcess = false;
+        DisabledArrowsToFix?.Invoke(true);
     }
 
     public void OnPlayerEndToFixTurbine() {
-        if (!isFixing) return;
-        isFixing = false;
-        DisabledArrowsToFix?.Invoke(true);
+        if (!isPlayeInAerogerador) return;
+        isPlayeInAerogerador = false;
     }
     #endregion
 }
