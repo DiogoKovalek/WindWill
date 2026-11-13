@@ -37,7 +37,7 @@ public class EventManager : MonoBehaviour {
         gameControler.PlayerStartToTurbine += playerControler.OnPlayerStartToFixTurbine;
 
         //Player
-        playerControler.DisabledArrowsToFix += uiControler.OnActivateArrowRightAndLeft;
+        playerControler.DisabledArrowsToFix += cameraControler.OnDisableArrowsToFix;
 
         //Batery
         batery.GameOvered += gameControler.OnGameOver;
