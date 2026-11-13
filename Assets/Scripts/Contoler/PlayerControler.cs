@@ -64,6 +64,23 @@ public class PlayerControler : MonoBehaviour {
         anim.SetBool("IsMove", false);
         coroutineMovePlayer = null;
     }
+    private IEnumerator movePlayerToPoint(Vector3 start, Vector3 target, Action isEnd) {
+        //Animation
+        Vector2 direction = ((Vector2)target - (Vector2)start).normalized;
+        if (direction.x > 0) sprRen.flipX = false;
+        else if (direction.x < 0) sprRen.flipX = true;
+        anim.SetBool("IsMove", true);
+
+        for(float t = 0; t < timeToGoInTurbine; t += Time.deltaTime) {
+            gameObject.transform.position = Vector3.Lerp(start, target, t / timeToGoInTurbine);
+            yield return null;
+        }
+        
+        gameObject.transform.position = target;
+        anim.SetBool("IsMove", false);
+
+        isEnd();
+    }
 
     #region Conserto de aerogerador
 
@@ -81,10 +98,16 @@ public class PlayerControler : MonoBehaviour {
     }
 
     private IEnumerator PlayerProcessFixTurbine(WindTurbine windTurbine) {
+        bool aux = false;
+        Vector3 initialPosition = transform.position;
+        Vector3 targetPosition = windTurbine.possitionDoor;
         isFixingProcess = true;
         DisabledArrowsToFix?.Invoke(false);
 
         // Vai até o aerogerador
+        aux = false;
+        StartCoroutine(movePlayerToPoint(initialPosition, targetPosition, () => {aux = true;}));
+        yield return new WaitUntil(() => aux == true);
 
         // Entra no aerogerador
         isPlayeInAerogerador = true;
@@ -94,7 +117,8 @@ public class PlayerControler : MonoBehaviour {
         yield return new WaitUntil(() => isPlayeInAerogerador == false);
 
         // Sai do aerogerador
-
+        StartCoroutine(movePlayerToPoint(targetPosition, initialPosition, () => {aux = true;}));
+        yield return new WaitUntil(() => aux == true);
         // Volta para a posicao inicial
 
         isFixingProcess = false;

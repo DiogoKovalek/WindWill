@@ -21,13 +21,18 @@ public class WindTurbine : MonoBehaviour {
     private bool isFixing = false;
     [SerializeField] private GameObject IconToFix;
     [SerializeField] private GameObject IconFixing;
+    [Header("Door Position")]
+    [SerializeField] private GameObject doorPosition;
+    public Vector3 possitionDoor {get; private set;}
 
     #region EVENTS
     public event Action<float> energyGenerated = delegate {};
     public event Action<float, int> UpdatedTextPercentGerador = delegate {};
     public event Action<COLOR_ICON, int> UpdatedImageColorTurbine = delegate {};
     #endregion
-
+    void Awake() {
+        possitionDoor = (Vector3) doorPosition?.transform?.position;
+    }
     void Start() {
         if (WindControler.windControler != null) {
             StartCoroutine(timerProduceEnergy());
