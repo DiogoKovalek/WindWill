@@ -17,7 +17,7 @@ public class WindTurbine : MonoBehaviour {
     [SerializeField] private float minTimeBroken = 3f;
     [SerializeField] private float maxTimeBroken = 12f;
     [SerializeField] private float timeToFix = 3f;
-    private bool isBroken = false;
+    public bool isBroken {get; private set;} = false ;
     private bool isFixing = false;
     [SerializeField] private GameObject IconToFix;
     [SerializeField] private GameObject IconFixing;

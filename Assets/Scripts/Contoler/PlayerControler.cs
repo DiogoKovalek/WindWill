@@ -75,7 +75,7 @@ public class PlayerControler : MonoBehaviour {
     // Player sai do aerogerado
     // Player volta para a posicao inicial
     public void OnPlayerStartToFixTurbine(WindTurbine windTurbine) {
-        if (isFixingProcess) return;
+        if (isFixingProcess || !windTurbine.isBroken) return;
         // Inicia corrotina para gerenciar o processo de conserto
         StartCoroutine(PlayerProcessFixTurbine(windTurbine));
     }
@@ -92,7 +92,7 @@ public class PlayerControler : MonoBehaviour {
         // Inicia o conserto e espera finalizar
         windTurbine.StartFixTurbine(OnPlayerEndToFixTurbine);
         yield return new WaitUntil(() => isPlayeInAerogerador == false);
-        
+
         // Sai do aerogerador
 
         // Volta para a posicao inicial
