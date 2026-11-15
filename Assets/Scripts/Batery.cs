@@ -3,8 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Batery : MonoBehaviour {
+
     [SerializeField] private SpriteRenderer sprRenFull;
     private float sprHight;
     [SerializeField] private Sprite[] sprites;
@@ -16,8 +18,12 @@ public class Batery : MonoBehaviour {
     private const float maxFullHight = 5;
     private const float minFullHight = 0.5f;
 
+    
 
     #region EVENTS
+    [SerializeField] private UnityEvent OnBatteryLow;
+    [SerializeField] private UnityEvent OnBatteryHigh;
+
     public event Action GameOvered = delegate { };
     #endregion
 
@@ -29,6 +35,8 @@ public class Batery : MonoBehaviour {
         if (sprRenFull != null) {
             updateHightFull();
         }
+
+
     }
 
     private void updateHightFull() {
@@ -43,12 +51,18 @@ public class Batery : MonoBehaviour {
             if (sprRenFull.sprite != sprites[0]) {
                 sprRenFull.sprite = sprites[0]; // para não ficar trocando toda hora
             }
+
+            OnBatteryHigh.Invoke(); //Temporario (Criar função separada depois)
         }
         else if (percentFull >= percentageIntervals[0]) {
             if (sprRenFull.sprite != sprites[1]) sprRenFull.sprite = sprites[1];
+
+            OnBatteryHigh.Invoke();
         }
         else {
             if (sprRenFull.sprite != sprites[2]) sprRenFull.sprite = sprites[2];
+
+            OnBatteryLow.Invoke();
         }
     }
 

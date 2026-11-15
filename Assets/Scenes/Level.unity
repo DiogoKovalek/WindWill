@@ -1474,6 +1474,7 @@ GameObject:
   - component: {fileID: 818134247}
   - component: {fileID: 818134249}
   - component: {fileID: 818134248}
+  - component: {fileID: 818134250}
   m_Layer: 5
   m_Name: Filter
   m_TagString: Untagged
@@ -1513,7 +1514,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1538,6 +1539,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 818134246}
   m_CullTransparentMesh: 1
+--- !u!114 &818134250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 818134246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a79a8b3658b075d38ce719e698b11cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animationSpeed: 0.01
 --- !u!1 &834400119
 GameObject:
   m_ObjectHideFlags: 0
@@ -3662,7 +3676,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1587176883}
   - component: {fileID: 1587176884}
-  - component: {fileID: 1587176886}
   - component: {fileID: 1587176885}
   m_Layer: 0
   m_Name: Batery
@@ -3758,18 +3771,36 @@ MonoBehaviour:
   - {fileID: 1379502036, guid: 1a9f0a2e2b3eff642a4c1982e921cd65, type: 3}
   numFull: 500
   maxFull: 500
---- !u!114 &1587176886
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1587176882}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a79a8b3658b075d38ce719e698b11cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  OnBatteryLow:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 818134250}
+        m_TargetAssemblyTypeName: redFilterControler, Assembly-CSharp
+        m_MethodName: SetAlert
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnBatteryHigh:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 818134250}
+        m_TargetAssemblyTypeName: redFilterControler, Assembly-CSharp
+        m_MethodName: DisableAlert
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!4 &1703071329 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 920586735128066218, guid: 734970d85c710824a942019cde817d47, type: 3}
