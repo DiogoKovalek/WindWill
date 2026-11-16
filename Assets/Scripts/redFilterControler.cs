@@ -7,7 +7,6 @@ public class redFilterControler : MonoBehaviour
 {
     private Image imagem;
 
-    private bool alert = false;
     private Coroutine animationRoutine = null;
 
     private const float maxAlpha = 0.8f;
@@ -20,40 +19,23 @@ public class redFilterControler : MonoBehaviour
         imagem = GetComponent<Image>();
     }
 
-    void Update()
+    public void OnSetAlert(bool batteryLow)
     {
-        if(animationRoutine == null && alert == true)
-        {
+        if(animationRoutine == null && batteryLow)
             animationRoutine = StartCoroutine(FilterAnimation());
-
-        }
-    }
-
-    public void SetAlert()
-    {
-        alert = true;
-        
     }   
-
-    public void DisableAlert()
-    {
-        alert = false;
-    }
 
     private IEnumerator FilterAnimation()
     {
         for(float i = minAlpha; i < maxAlpha; i += animationSpeed)
         {
             yield return null;
-            
             SetAlpha(i);
-            
         }
 
         for(float i = maxAlpha; i > minAlpha; i -= animationSpeed)
         {
             yield return null;
-
             SetAlpha(i);
         }
 

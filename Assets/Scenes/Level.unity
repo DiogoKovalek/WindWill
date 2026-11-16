@@ -1521,7 +1521,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d0568dcf4becf83428e507dac687827f, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3771,28 +3771,13 @@ MonoBehaviour:
   - {fileID: 1379502036, guid: 1a9f0a2e2b3eff642a4c1982e921cd65, type: 3}
   numFull: 500
   maxFull: 500
-  OnBatteryLow:
+  alertRequired:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 818134250}
         m_TargetAssemblyTypeName: redFilterControler, Assembly-CSharp
-        m_MethodName: SetAlert
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnBatteryHigh:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 818134250}
-        m_TargetAssemblyTypeName: redFilterControler, Assembly-CSharp
-        m_MethodName: DisableAlert
-        m_Mode: 1
+        m_MethodName: OnSetAlert
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
