@@ -3771,7 +3771,7 @@ MonoBehaviour:
   - {fileID: 1379502036, guid: 1a9f0a2e2b3eff642a4c1982e921cd65, type: 3}
   numFull: 500
   maxFull: 500
-  alertRequired:
+  AlertRequired:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 818134250}

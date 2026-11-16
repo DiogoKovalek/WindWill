@@ -19,7 +19,7 @@ public class Batery : MonoBehaviour {
     private const float minFullHight = 0.5f;
 
     #region EVENTS
-    [SerializeField] private UnityEvent<bool> alertRequired;
+    [SerializeField] private UnityEvent<bool> AlertRequired;
 
     public event Action GameOvered = delegate { };
     #endregion
@@ -47,17 +47,17 @@ public class Batery : MonoBehaviour {
                 sprRenFull.sprite = sprites[0]; // para não ficar trocando toda hora
             }
 
-            alertRequired?.Invoke(false); // Temporario (Criar função separada depois) -João
+            AlertRequired?.Invoke(false); // Temporario (Criar função separada depois) -João
         }
         else if (percentFull >= percentageIntervals[0]) {
             if (sprRenFull.sprite != sprites[1]) sprRenFull.sprite = sprites[1];
 
-            alertRequired?.Invoke(false);
+            AlertRequired?.Invoke(false);
         }
         else {
             if (sprRenFull.sprite != sprites[2]) sprRenFull.sprite = sprites[2];
 
-            alertRequired?.Invoke(true);
+            AlertRequired?.Invoke(true);
         }
     }
 
