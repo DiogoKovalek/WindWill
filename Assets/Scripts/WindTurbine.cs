@@ -17,17 +17,22 @@ public class WindTurbine : MonoBehaviour {
     [SerializeField] private float minTimeBroken = 3f;
     [SerializeField] private float maxTimeBroken = 12f;
     [SerializeField] private float timeToFix = 3f;
-    private bool isBroken = false;
+    public bool isBroken {get; private set;} = false ;
     private bool isFixing = false;
     [SerializeField] private GameObject IconToFix;
     [SerializeField] private GameObject IconFixing;
+    [Header("Door Position")]
+    [SerializeField] private GameObject doorPosition;
+    public Vector3 possitionDoor {get; private set;}
 
     #region EVENTS
     public event Action<float> energyGenerated = delegate {};
     public event Action<float, int> UpdatedTextPercentGerador = delegate {};
     public event Action<COLOR_ICON, int> UpdatedImageColorTurbine = delegate {};
     #endregion
-
+    void Awake() {
+        possitionDoor = (Vector3) doorPosition?.transform?.position;
+    }
     void Start() {
         if (WindControler.windControler != null) {
             StartCoroutine(timerProduceEnergy());
@@ -74,17 +79,18 @@ public class WindTurbine : MonoBehaviour {
         randomizeBrokenTime();
     }
 
-    public void StartFixTurbine() {
+    public void StartFixTurbine(Action playerEndFix) {
         if(isBroken && !isFixing) {
             isFixing = true;
             IconToFix.SetActive(false);
             IconFixing.SetActive(true);
-            StartCoroutine(delayFixTurbine());
+            StartCoroutine(delayFixTurbine(playerEndFix));
         }
     }
-    private IEnumerator delayFixTurbine() {
+    private IEnumerator delayFixTurbine(Action playerEndFix) {
         yield return new WaitForSeconds(timeToFix);
         fixTurbine();
+        playerEndFix?.Invoke();
     }
     private IEnumerator timerProduceEnergy() {
         while (true) {

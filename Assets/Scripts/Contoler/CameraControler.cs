@@ -47,10 +47,20 @@ public class CameraControler : MonoBehaviour {
     }
 
     private void checkIfIsFreeLeftAndRight() { // verificar se exite tela para direita e para a esquerda
-        if (screenIndex <= 0) ActivedArrowLeft(false);
-        else ActivedArrowLeft(true);
-        if (screenIndex >= maxScreenIndex) ActivedArrowRight(false);
-        else ActivedArrowRight(true);
+        if (screenIndex <= 0) ActivedArrowLeft?.Invoke(false);
+        else ActivedArrowLeft?.Invoke(true);
+        if (screenIndex >= maxScreenIndex) ActivedArrowRight?.Invoke(false);
+        else ActivedArrowRight?.Invoke(true);
+    }
+
+    public void OnDisableArrowsToFix(bool isActive) {
+        if (isActive) { // Ativa as setas novamente
+            checkIfIsFreeLeftAndRight();
+        }
+        else { // desativa as setas
+            ActivedArrowLeft?.Invoke(false);
+            ActivedArrowRight?.Invoke(false);
+        }
     }
 }
 

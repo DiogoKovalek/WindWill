@@ -570,6 +570,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &7202569309895174216
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7336587903039092238}
+  m_Layer: 0
+  m_Name: DoorPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7336587903039092238
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7202569309895174216}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 920586735128066218}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7552662333180109717
 GameObject:
   m_ObjectHideFlags: 0
@@ -722,6 +753,7 @@ Transform:
   - {fileID: 595585222656917028}
   - {fileID: 4045155146522087809}
   - {fileID: 7705588231844474332}
+  - {fileID: 7336587903039092238}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3641907488515902600
@@ -744,6 +776,7 @@ MonoBehaviour:
   timeToFix: 3
   IconToFix: {fileID: 2309260557935783141}
   IconFixing: {fileID: 5980019112141585963}
+  doorPosition: {fileID: 7202569309895174216}
 --- !u!61 &3595549379906223228
 BoxCollider2D:
   m_ObjectHideFlags: 0
