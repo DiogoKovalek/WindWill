@@ -126,6 +126,7 @@ public class PlayerControler : MonoBehaviour {
         yield return new WaitUntil(() => isPlayeInAerogerador == false);
 
         // Sai do aerogerador
+        aux = false;
         for(float t = 0; t < timeAlpha; t += Time.deltaTime) {
             color.a = Mathf.Lerp(0, 1, t/timeAlpha);
             sprRen.color = color;
