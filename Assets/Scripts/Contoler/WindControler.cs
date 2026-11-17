@@ -93,7 +93,6 @@ public class WindControler : MonoBehaviour {
         float timeToTradeIndexFoce = UnityEngine.Random.Range(minTimeToTradeIndexForce, maxTimeToTradeIndexForce);
         yield return new WaitForSeconds(timeToTradeIndexFoce);
 
-        Debug.Log("Troca o intervalo");
         if (indexForce == 1) {
             indexForce++;
         }

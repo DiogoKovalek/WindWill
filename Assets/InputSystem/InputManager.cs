@@ -87,7 +87,7 @@ public class InputManager : MonoBehaviour {
 
     #region Game
     public void OnClick() {
-        if(isClickInButtonUI()) return;
+        //if(isClickInButtonUI()) return;
         // Verificar colisor
         Vector2 mousePosition = mousePositionAction.ReadValue<Vector2>();
         Vector2 worldPoint = Camera.main.ScreenToWorldPoint(mousePosition);
