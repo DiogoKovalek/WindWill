@@ -17,7 +17,7 @@ public class PlayerControler : MonoBehaviour {
 
     [Header("Move to Fix")]
     [SerializeField] private float timeToGoInTurbine = 1f;
-    [SerializeField] private float timeAlpha = 0.5f;
+    [SerializeField] private float timeAlpha = 3f;
     private bool isFixingProcess = false;
     private bool isPlayeInAerogerador = false;
     #region EVENTS
@@ -101,6 +101,8 @@ public class PlayerControler : MonoBehaviour {
         bool aux = false;
         Vector3 initialPosition = transform.position;
         Vector3 targetPosition = windTurbine.possitionDoor;
+        Color color = sprRen.color;
+
         isFixingProcess = true;
         DisabledArrowsToFix?.Invoke(false);
 
@@ -111,12 +113,27 @@ public class PlayerControler : MonoBehaviour {
 
         // Entra no aerogerador
         isPlayeInAerogerador = true;
+        for(float t = 0; t < timeAlpha; t += Time.deltaTime) { // Laço de repetiçao adicionando o tempo
+            color.a = Mathf.Lerp(1, 0, t/timeAlpha);
+            sprRen.color = color;
+            yield return null;
+        }
+        color.a = 0f;
+        sprRen.color = color; // Garantir ficar alpha 0
 
         // Inicia o conserto e espera finalizar
         windTurbine.StartFixTurbine(OnPlayerEndToFixTurbine);
         yield return new WaitUntil(() => isPlayeInAerogerador == false);
 
         // Sai do aerogerador
+        for(float t = 0; t < timeAlpha; t += Time.deltaTime) {
+            color.a = Mathf.Lerp(0, 1, t/timeAlpha);
+            sprRen.color = color;
+            yield return null;
+        }
+        color.a = 1f;
+        sprRen.color = color; // Garantir ficar alpha 1
+
         StartCoroutine(movePlayerToPoint(targetPosition, initialPosition, () => {aux = true;}));
         yield return new WaitUntil(() => aux == true);
         // Volta para a posicao inicial

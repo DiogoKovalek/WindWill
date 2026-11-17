@@ -4746,9 +4746,17 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 7321892729711169225, guid: 66aaff3f1b513b84c83428a1eeedfe95, type: 3}
+      propertyPath: timeAlpha
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7321892729711169225, guid: 66aaff3f1b513b84c83428a1eeedfe95, type: 3}
       propertyPath: movePoints
       value: 
       objectReference: {fileID: 12529386}
+    - target: {fileID: 7321892729711169225, guid: 66aaff3f1b513b84c83428a1eeedfe95, type: 3}
+      propertyPath: timeToGoInTurbine
+      value: 0.8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
