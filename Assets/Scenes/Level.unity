@@ -548,6 +548,98 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 265503838}
   m_CullTransparentMesh: 1
+--- !u!1 &281775452
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 281775454}
+  - component: {fileID: 281775453}
+  m_Layer: 0
+  m_Name: DecorControler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &281775453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 281775452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 224a3a4749d32244b8077106e4ab3eb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cloudConfig:
+    prefab: {fileID: 8575281673806146808, guid: b461a3fe626c779429852267e90862ae, type: 3}
+    direction: {x: -1, y: 0}
+    areaDownLeft: {x: -20, y: -5}
+    areaUpRight: {x: 90, y: 10}
+    minQuant: 6
+    maxQuant: 10
+    minTimeSpawn: 2
+    maxTimeSpawn: 3
+    minSpeed: 0.5
+    maxSpeed: 1
+    minScale: 4
+    maxScale: 6
+    minAlpha: 200
+    maxAlpha: 255
+    pool: []
+  leafConfig:
+    prefab: {fileID: 4504928516046442019, guid: d72f00be00842be499f3006167982a54, type: 3}
+    direction: {x: -1, y: -0.2}
+    areaDownLeft: {x: -30, y: -10}
+    areaUpRight: {x: 90, y: 30}
+    minQuant: 30
+    maxQuant: 50
+    minTimeSpawn: 0.07
+    maxTimeSpawn: 1
+    minSpeed: 3
+    maxSpeed: 4
+    minScale: 0.5
+    maxScale: 1.5
+    minAlpha: 200
+    maxAlpha: 255
+    pool: []
+  windConfig:
+    prefab: {fileID: 6985809417969245047, guid: 6f0e938904fce2d4db8a280d2d7e87e3, type: 3}
+    direction: {x: -1, y: 0}
+    areaDownLeft: {x: -20, y: -10}
+    areaUpRight: {x: 90, y: 10}
+    minQuant: 5
+    maxQuant: 25
+    minTimeSpawn: 1
+    maxTimeSpawn: 1.5
+    minSpeed: 3
+    maxSpeed: 3.5
+    minScale: 1
+    maxScale: 3
+    minAlpha: 200
+    maxAlpha: 255
+    pool: []
+--- !u!4 &281775454
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 281775452}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &379688425 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 920586735128066218, guid: 734970d85c710824a942019cde817d47, type: 3}
@@ -4938,3 +5030,4 @@ SceneRoots:
   - {fileID: 2129430550}
   - {fileID: 1587176883}
   - {fileID: 240676006}
+  - {fileID: 281775454}
